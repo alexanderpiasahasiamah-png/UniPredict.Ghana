@@ -6509,4 +6509,16 @@ splash.style.display = ‘none’;
 }, 650);
 }
 
-// Auto-dismiss after 9 seconds if user doesn’t
+// Auto-dismiss after 9 seconds if user doesn’t interact
+setTimeout(() => {
+ const splash = document.getElementById('splash-screen');
+ if(splash && splash.style.display!== 'none') {
+   dismissSplash();
+ }
+}, 9000);
+
+
+</script>
+
+</body>
+</html>
