@@ -6501,12 +6501,14 @@ track.innerHTML += `<div class="testi-card"> <div class="testi-top"> <div class=
 
 // ─── SPLASH SCREEN LOGIC ───
 function dismissSplash() {
-const splash = document.getElementById(‘splash-screen’);
-if (!splash || splash.style.display === ‘none’) return;
-splash.classList.add(‘splash-hiding’);
-setTimeout(() => {
-splash.style.display = ‘none’;
-}, 650);
+  const splash = document.getElementById('splash-screen');
+  if (!splash || splash.style.display === 'none') return;
+  splash.classList.add('splash-hiding');
+  
+  // This will remove the splash screen after the animation completes
+  setTimeout(() => {
+    splash.style.display = 'none';
+  }, 600); // Matches the duration of your splash-hiding transition
 }
 
 // Auto-dismiss after 9 seconds if user doesn't interact
