@@ -6481,45 +6481,55 @@ btn.style.background = ‘#00e87a’;
 }, 2000);
 }
 
+<script>
 // ─── TESTIMONIALS ───
 const students = [
-{ name: ‘Samuel Ghansah’, school: ‘SWEDRU SENIOR HIGH SCHOOL’, quote: ‘UniPredict told me exactly which programs I qualified for. Got into Computer Science at UG on my first try!’, program: ‘BSc. Computer Science’, agg: 11, color: ‘#4f8fff’ },
-{ name: ‘Abena Owusu’, school: ‘Wesley Girls, Cape Coast’, quote: ‘The AI career guidance was different from anything else. It helped me pick Optometry over Nursing and I have no regrets.’, program: ‘Doctor of Optometry’, agg: 12, color: ‘#22d47a’ },
-{ name: ‘Gabriel Tiborimor’, school: ‘SWESCO’, quote: ‘I was scared my aggregate wasn't good enough. UniPredict showed me I qualified for more programs than I thought!’, program: ‘BSc. Engineering’, agg: 15, color: ‘#f5c842’ },
-{ name: ‘Ama Sarpong’, school: ‘Mfantsipim School’, quote: ‘The USSD feature was a lifesaver when my data ran out. Checked my results at midnight before form deadline.’, program: ‘BSc. Nursing’, agg: 16, color: ‘#ff8c42’ },
-{ name: ‘Patient Boateng’, school: ‘SWEDRU SENIOR HIGH SCHOOL’, quote: ‘Best GH₵12 I ever spent CLOCK IT! Alexander😂. The bundle pack helped me compare KNUST vs UG side by side. Crystal clear decision.’, program: ‘BSc. Pharmacy’, agg: 9, color: ‘#c042f5’ },
-{ name: ‘Efua Asiedu’, school: ‘Holy Child School’, quote: ‘My teacher said my aggregate won't get me into UPSA. UniPredict proved him wrong — I qualified for 3 programs there!’, program: ‘LLB Law’, agg: 18, color: ‘#42c5f5’ },
-{ name: ‘Kwame Asante’, school: ‘PRESEC, Legon’, quote: ‘UniPredict told me exactly which programs I qualified for. Got into Computer Science at UG on my first try!’, program: ‘BSc. Computer Science’, agg: 11, color: ‘#4f8fff’ },
-{ name: ‘Keziah Dede Asiamah’, school: ‘Ghana National College, Cape Coast’, quote: ‘The AI career guidance was different from anything else. It helped me pick Optometry over Nursing and I have no regrets.’, program: ‘Doctor of Optometry’, agg: 12, color: ‘#22d47a’ },
+{ name: 'Samuel Ghansah', school: 'SWEDRU SENIOR HIGH SCHOOL', quote: 'UniPredict told me exactly which programs I qualified for. Got into Computer Science at UG on my first try!', program: 'BSc. Computer Science', agg: 11, color: '#4f8fff' },
+{ name: 'Abena Owusu', school: 'Wesley Girls, Cape Coast', quote: 'The AI career guidance was different from anything else. It helped me pick Optometry over Nursing and I have no regrets.', program: 'Doctor of Optometry', agg: 12, color: '#22d47a' },
+{ name: 'Gabriel Tiborimor', school: 'SWESCO', quote: 'I was scared my aggregate wasn\'t good enough. UniPredict showed me I qualified for more programs than I thought!', program: 'BSc. Engineering', agg: 15, color: '#f5c842' },
+{ name: 'Ama Sarpong', school: 'Mfantsipim School', quote: 'The USSD feature was a lifesaver when my data ran out. Checked my results at midnight before form deadline.', program: 'BSc. Nursing', agg: 16, color: '#ff8c42' },
+{ name: 'Patient Boateng', school: 'SWEDRU SENIOR HIGH SCHOOL', quote: 'Best GH₵12 I ever spent CLOCK IT! Alexander😂. The bundle pack helped me compare KNUST vs UG side by side. Crystal clear decision.', program: 'BSc. Pharmacy', agg: 9, color: '#c042f5' },
+{ name: 'Efua Asiedu', school: 'Holy Child School', quote: 'My teacher said my aggregate won\'t get me into UPSA. UniPredict proved him wrong — I qualified for 3 programs there!', program: 'LLB Law', agg: 18, color: '#42c5f5' },
+{ name: 'Kwame Asante', school: 'PRESEC, Legon', quote: 'UniPredict told me exactly which programs I qualified for. Got into Computer Science at UG on my first try!', program: 'BSc. Computer Science', agg: 11, color: '#4f8fff' },
+{ name: 'Keziah Dede Asiamah', school: 'Ghana National College, Cape Coast', quote: 'The AI career guidance was different from anything else. It helped me pick Optometry over Nursing and I have no regrets.', program: 'Doctor of Optometry', agg: 12, color: '#22d47a' },
 ];
 
-const track = document.getElementById(‘testiTrack’);
-students.forEach(s => {
-const initials = s.name.split(’ ‘).map(n=>n[0]).join(’’);
-track.innerHTML += `<div class="testi-card"> <div class="testi-top"> <div class="testi-avatar" style="background:${s.color}22;color:${s.color}">${initials}</div> <div> <div class="testi-name">${s.name}</div> <div class="testi-school">${s.school}</div> </div> </div> <p class="testi-quote">"${s.quote}"</p> <div class="testi-footer"> <span class="testi-program">✓ ${s.program}</span> <span class="testi-agg">Agg: ${s.agg}</span> </div> </div>`;
-});
+const track = document.getElementById('testiTrack');
 
-// ─── SPLASH SCREEN LOGIC ───
-function dismissSplash() {
-  const splash = document.getElementById('splash-screen');
-  if (!splash || splash.style.display === 'none') return;
-  splash.classList.add('splash-hiding');
-  
-  // This will remove the splash screen after the animation completes
-  setTimeout(() => {
-    splash.style.display = 'none';
-  }, 600); // Matches the duration of your splash-hiding transition
+if (track) {
+  students.forEach(s => {
+    const initials = s.name.split(' ').map(n => n[0]).join('');
+    track.innerHTML += `
+      <div class="testi-card">
+        <div class="avatar" style="background:${s.color}">${initials}</div>
+        <div class="name">${s.name}</div>
+        <div class="program">${s.program}</div>
+        <div class="quote">"${s.quote}"</div>
+      </div>
+    `;
+  });
 }
 
-// Auto-dismiss after 9 seconds if user doesn't interact
+// ─── SPLASH SCREEN ───
+function dismissSplash() {
+  const splash = document.getElementById('splash-screen');
+  if (!splash) return;
+
+  splash.style.opacity = '0';
+  splash.style.pointerEvents = 'none';
+
   setTimeout(() => {
-    const splash = document.getElementById('splash-screen');
-    if (splash && splash.style.display !== 'none') {
-      dismissSplash();
-    }
-  }, 9000);
+    splash.style.display = 'none';
+  }, 600);
+}
 
-
+// Auto dismiss after 9s
+setTimeout(() => {
+  const splash = document.getElementById('splash-screen');
+  if (splash && splash.style.display !== 'none') {
+    dismissSplash();
+  }
+}, 9000);
 </script>
 
 </body>
